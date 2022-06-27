@@ -59,6 +59,16 @@ func FuzzQuick(f *testing.F) {
 	})
 }
 
+func FuzzQuick2(f *testing.F) {
+	f.Fuzz(func(t *testing.T, a []byte) {
+		sort.Quick2(a)
+
+		if !stdsort.IsSorted(Byte64Slice(a)) {
+			t.Fail()
+		}
+	})
+}
+
 type Byte64Slice []byte
 
 func (x Byte64Slice) Len() int { return len(x) }

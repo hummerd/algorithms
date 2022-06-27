@@ -36,7 +36,7 @@ func Quick2[T constraints.Ordered](a []T) {
 	n := a[ni]
 
 	i, j := 0, len(a)-1
-	for i < j {
+	for i <= j {
 		if a[i] <= n {
 			i++
 			continue
@@ -48,14 +48,6 @@ func Quick2[T constraints.Ordered](a []T) {
 		}
 
 		a[i], a[j] = a[j], a[i]
-	}
-
-	// everything that is <i is less or equal to n
-	// everything that is >i is greater then n
-	// we are going to spit task into two subtasks [0, i) and [i, len(a)-1]
-	// let's check that a[i] will go to correct subtask
-	if a[i] < n {
-		a[ni], a[i] = a[i], a[ni]
 	}
 
 	Quick(a[:i])
